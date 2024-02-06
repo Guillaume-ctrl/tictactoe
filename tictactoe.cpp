@@ -33,7 +33,7 @@ bool hasWinner(Board board) {
         || board[0][0] != '0') ||
        (board[0][2]==board[1][1]
         && board[0][2]==board[2][0]
-        && board[0][2] = '0')) {
+        && board[0][2] == '0')) {
            return true;
     }
     for(int line = 0; line <=2; line++) {
@@ -55,14 +55,15 @@ int main() {
     int row = 0;
     int column = 0;
     int i, j;
+    int X = 0;
     
     for (i=0; i<3; i++){
-        for (j=0 ; j<=3; j++){
+        for (j=0 ; j<3; j++){
             board[i][j]='0';
         }
     }
     
-    for (cpt = 0; cpt<9 && !winner; cpt++) {
+    for (int cpt = 0; cpt<9 && !winner; cpt++) {
         int player = cpt%2 ;
         printBoard(board);
         cout<<"Player "<<player<<" please enter the ";
@@ -77,18 +78,18 @@ int main() {
             cin>>row;
             cin>>column;
         }
-        if(player=1){
+        if(player==1){
             board[row][column]=X;
         }else{
             board[row][column]='O';
         }
-        if (hasWinner(board)) { winner == player; }
+        if (hasWinner(board)) { winner = player; }
     }
     
     printBoard(board);
     
     if(!winner) {
-        cout<<"The game is a draw"<<endl
+        cout<<"The game is a draw"<<endl;
     } else {
         cout<<"Player "<<winner<<" has won"<<endl;
     }
